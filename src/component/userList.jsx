@@ -16,16 +16,18 @@ const UserList = ({ users, editUser, deleteUser }) => {
 							<div>
 								<span className="font-bold">{user.name}</span> - {user.email}
 							</div>
-							<div>
+							<div className="flex gap-4 md:gap-8">
 								<button
 									onClick={() => editUser(user)}
-									className="bg-yellow-400 text-white py-1 px-2 rounded-md hover:bg-yellow-500 mr-2"
+									className="bg-yellow-400 text-white font-light py-1 px-3 rounded-md hover:bg-yellow-500 
+                   mr-2 md:font-bold md:py-3 md:px-5 md:bg-yellow-300"
 								>
 									Edit
 								</button>
 								<button
 									onClick={() => deleteUser(user.email)}
-									className="bg-red-500 text-white py-1 px-2 rounded-md hover:bg-red-600"
+									className="bg-red-500 text-white font-light py-1 px-3 rounded-md hover:bg-red-600 
+                   md:font-bold md:py-3 md:px-5 md:bg-red-400"
 								>
 									Delete
 								</button>
