@@ -1,5 +1,7 @@
-// src/App.js
 import React, { useState } from "react";
+import { notification } from "antd";
+// import "antd/dist/antd.css";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import UserForm from "./component/userForm";
 import UserList from "./component/userList";
 
@@ -9,7 +11,22 @@ const App = () => {
 	const [editMode, setEditMode] = useState(false);
 
 	const addUser = (user) => {
+		// Optional: Ensure unique email
+		const emailExists = users.some((u) => u.email === user.email);
+		if (emailExists) {
+			notification.error({
+				message: "Error",
+				description: "A user with this email already exists.",
+				icon: <CloseCircleOutlined style={{ color: "#ff4d4f" }} />,
+			});
+			return;
+		}
 		setUsers([...users, user]);
+		notification.success({
+			message: "Success",
+			description: "User added successfully!",
+			icon: <CheckCircleOutlined style={{ color: "#52c41a" }} />,
+		});
 	};
 
 	const editUser = (user) => {
@@ -24,10 +41,20 @@ const App = () => {
 			)
 		);
 		setEditMode(false);
+		notification.success({
+			message: "Success",
+			description: "User updated successfully!",
+			icon: <CheckCircleOutlined style={{ color: "#52c41a" }} />,
+		});
 	};
 
 	const deleteUser = (email) => {
 		setUsers(users.filter((user) => user.email !== email));
+		notification.success({
+			message: "Success",
+			description: "User deleted successfully!",
+			icon: <CheckCircleOutlined style={{ color: "#52c41a" }} />,
+		});
 	};
 
 	return (
